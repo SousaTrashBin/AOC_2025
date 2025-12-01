@@ -23,7 +23,8 @@ impl Day01 {
 
 impl Solution for Day01 {
     fn new(input: &str) -> Self {
-        let rotations = input.lines()
+        let rotations = input
+            .lines()
             .map(|line| {
                 let dir_char = line.chars().next().unwrap();
                 let distance: i32 = line[1..].parse().unwrap();
@@ -34,7 +35,10 @@ impl Solution for Day01 {
                     _ => unreachable!(), // valid input, this should never happen
                 };
 
-                Rotation { direction, distance }
+                Rotation {
+                    direction,
+                    distance,
+                }
             })
             .collect();
 

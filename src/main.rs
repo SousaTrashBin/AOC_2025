@@ -1,8 +1,8 @@
-use crate::day1::Day01;
+use crate::day01::Day01;
 use crate::solution::Solution;
 use std::fs;
 
-mod day1;
+mod day01;
 mod solution;
 
 fn main() {

@@ -1,17 +1,26 @@
-use crate::day01::Day01;
+use crate::day02::Day02;
 use crate::solution::Solution;
 use std::fs;
+use std::time::Instant;
 
 mod day01;
+mod day02;
 mod solution;
 
 fn main() {
-    let input = fs::read_to_string("input/day1.txt").unwrap();
+    let input = fs::read_to_string("input/day2.txt").unwrap();
+    let day = Day02::new(&input);
 
-    let day = Day01::new(&input);
+    let measure = |f: &dyn Fn() -> String| {
+        let start = Instant::now();
+        let result = f();
+        let elapsed = start.elapsed().as_millis();
+        (result, elapsed)
+    };
 
-    let (p1, p2) = day.get_solutions();
+    let (p1, t1) = measure(&|| day.part_1());
+    println!("part 1: {} ({} ms)", p1, t1);
 
-    println!("part 1: {}", p1);
-    println!("part 2: {}", p2);
+    let (p2, t2) = measure(&|| day.part_2());
+    println!("part 2: {} ({} ms)", p2, t2);
 }

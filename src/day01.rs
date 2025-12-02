@@ -12,6 +12,7 @@ struct Rotation {
     distance: i32,
 }
 
+#[derive(Debug)]
 pub struct Day01 {
     rotations: Vec<Rotation>,
 }

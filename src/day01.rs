@@ -1,4 +1,5 @@
 use crate::solution::Solution;
+use std::fs;
 
 #[derive(Debug)]
 enum Direction {
@@ -87,4 +88,13 @@ impl Solution for Day01 {
 
         zero_hits_per_click.to_string()
     }
+}
+
+#[test]
+fn test_day01() {
+    let test_input = fs::read_to_string("input/day1_test.txt").unwrap();
+    let day01 = Day01::new(&*test_input);
+
+    assert_eq!(day01.part_1(), "3");
+    assert_eq!(day01.part_2(), "6");
 }

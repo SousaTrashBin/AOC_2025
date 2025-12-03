@@ -69,7 +69,7 @@ impl Solution for Day02 {
 
 #[test]
 fn test_day02() {
-    let test_input = fs::read_to_string("input/day2_test.txt").unwrap();
+    let test_input = fs::read_to_string("input/day02_test.txt").unwrap();
     let day02 = Day02::new(&*test_input);
 
     assert_eq!(day02.part_1(), "1227775554");

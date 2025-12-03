@@ -9,7 +9,7 @@ mod day03;
 mod solution;
 
 fn main() {
-    let input = fs::read_to_string("input/day3.txt").unwrap();
+    let input = fs::read_to_string("input/day03.txt").unwrap();
     let day = Day03::new(&input);
 
     let measure = |f: &dyn Fn() -> String| {

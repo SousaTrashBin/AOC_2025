@@ -52,7 +52,6 @@ impl Bank {
                     // max by the joltage then the smallest index
                     .max_by(|a, b| a.1.cmp(b.1).then(b.0.cmp(&a.0)))
                     .unwrap();
-
                 (joltage * 10 + digit, start_idx + offset + 1)
             })
             .0

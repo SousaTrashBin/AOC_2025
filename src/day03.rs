@@ -35,16 +35,18 @@ impl Day03 {
     fn find_max_output_joltage(&self, battery_count: usize) -> String {
         self.banks
             .iter()
-            .map(|bank| Self::find_bank_max_output_joltage(battery_count, bank))
+            .map(|bank| bank.find_bank_max_output_joltage(battery_count))
             .sum::<i64>()
             .to_string()
     }
+}
 
-    fn find_bank_max_output_joltage(battery_count: usize, bank: &Bank) -> i64 {
+impl Bank {
+    fn find_bank_max_output_joltage(&self, battery_count: usize) -> i64 {
         (0..battery_count)
             .fold((0, 0), |(joltage, start_idx), batteries_left| {
-                let search_end = bank.batteries.len() - (battery_count - 1 - batteries_left);
-                let (offset, &digit) = bank.batteries[start_idx..search_end]
+                let search_end = self.batteries.len() - (battery_count - 1 - batteries_left);
+                let (offset, &digit) = self.batteries[start_idx..search_end]
                     .iter()
                     .enumerate()
                     // max by the joltage then the smallest index

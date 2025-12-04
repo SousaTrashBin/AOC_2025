@@ -50,17 +50,30 @@ impl Solution for Day04 {
 
     fn part_2(&self) -> String {
         let mut paper_rolls = self.paper_rolls.clone();
-        let mut removed_paper_rolls = 0;
+        let mut removed_count = 0;
 
-        while let Some(pos) = paper_rolls.keys().copied().find(|p| {
-            let roll = &paper_rolls[p];
-            self.can_paper_roll_be_accessed(roll, &paper_rolls)
-        }) {
-            paper_rolls.remove(&pos);
-            removed_paper_rolls += 1;
+        let mut to_be_removed: Vec<_> = paper_rolls
+            .values()
+            .filter(|roll| self.can_paper_roll_be_accessed(roll, &paper_rolls))
+            .cloned()
+            .collect();
+
+        while let Some(roll) = to_be_removed.pop() {
+            if let Some(_) = paper_rolls.remove(&roll.position) {
+                // a roll can be added twice
+                removed_count += 1;
+
+                for neighbor_pos in roll.position.neighbours() {
+                    if let Some(neighbor_roll) = paper_rolls.get(&neighbor_pos)
+                        && self.can_paper_roll_be_accessed(neighbor_roll, &paper_rolls)
+                    {
+                        to_be_removed.push(neighbor_roll.clone());
+                    }
+                }
+            }
         }
 
-        removed_paper_rolls.to_string()
+        removed_count.to_string()
     }
 }
 
@@ -87,10 +100,11 @@ impl Position {
 impl Day04 {
     fn can_paper_roll_be_accessed(
         &self,
-        roll: &PaperRoll,
+        paper_roll: &PaperRoll,
         map: &HashMap<Position, PaperRoll>,
     ) -> bool {
-        roll.position
+        paper_roll
+            .position
             .neighbours()
             .filter(|pos| map.contains_key(pos))
             .count()

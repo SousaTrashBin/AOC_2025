@@ -2,15 +2,12 @@ use crate::solution::Solution;
 use std::cmp::Ordering;
 use std::fs;
 
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, PartialOrd, Ord)]
-pub struct Ingredient {
-    id: i64,
-}
+type Ingredient = i64;
 
 #[derive(Debug, Eq, PartialEq, Clone)]
 pub struct Range {
-    min: i64,
-    max: i64,
+    min: Ingredient,
+    max: Ingredient,
 }
 
 impl Ord for Range {
@@ -44,8 +41,8 @@ impl Solution for Day05 {
             .lines()
             .map(|line| {
                 let mut parts = line.split("-");
-                let min = parts.next().unwrap().parse::<i64>().unwrap();
-                let max = parts.next().unwrap().parse::<i64>().unwrap();
+                let min = parts.next().unwrap().parse::<Ingredient>().unwrap();
+                let max = parts.next().unwrap().parse::<Ingredient>().unwrap();
                 Range { min, max }
             })
             .collect();
@@ -55,9 +52,7 @@ impl Solution for Day05 {
             .next()
             .unwrap()
             .lines()
-            .map(|line| Ingredient {
-                id: line.parse::<i64>().unwrap(),
-            })
+            .map(|line| line.parse::<Ingredient>().unwrap())
             .collect();
         ingredients.sort();
 
@@ -74,7 +69,7 @@ impl Solution for Day05 {
         let mut range_idx = 0;
 
         for ingredient in &self.ingredients {
-            while range_idx < ranges.len() && ingredient.id > ranges[range_idx].max {
+            while range_idx < ranges.len() && ingredient > &ranges[range_idx].max {
                 range_idx += 1;
             }
 
@@ -82,7 +77,7 @@ impl Solution for Day05 {
                 break;
             }
 
-            if ranges[range_idx].min <= ingredient.id {
+            if ranges[range_idx].min <= *ingredient {
                 fresh_count += 1;
             }
         }

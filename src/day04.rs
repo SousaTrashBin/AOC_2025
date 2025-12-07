@@ -4,8 +4,17 @@ use std::fs;
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub struct Position {
-    x: i32,
-    y: i32,
+    pub(crate) x: i32,
+    pub(crate) y: i32,
+}
+
+impl Position {
+    pub fn move_by(&self, dx: i32, dy: i32) -> Self {
+        Position {
+            x: self.x + dx,
+            y: self.y + dy,
+        }
+    }
 }
 
 #[derive(Debug, Clone)]

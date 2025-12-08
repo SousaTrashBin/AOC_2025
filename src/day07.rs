@@ -1,8 +1,8 @@
 use crate::day04::Position;
 use crate::solution::Solution;
+use crate::test_solution;
 use std::collections::{HashMap, HashSet};
 use std::fmt::Debug;
-use std::fs;
 
 #[derive(Debug)]
 pub struct Day07 {
@@ -96,12 +96,4 @@ impl Solution for Day07 {
     }
 }
 
-#[test]
-fn test_day07() {
-    let test_input = fs::read_to_string("input/day07_test.txt").unwrap();
-    let day07 = Day07::new(&*test_input);
-    println!("{:?}", day07);
-
-    assert_eq!(day07.part_1(), "21");
-    assert_eq!(day07.part_2(), "40");
-}
+test_solution!(Day07, "input/day07_test.txt", "21", "40");

@@ -1,5 +1,5 @@
 use crate::solution::Solution;
-use std::fs;
+use crate::test_solution;
 
 #[derive(Debug)]
 pub struct Bank {
@@ -58,11 +58,4 @@ impl Bank {
     }
 }
 
-#[test]
-fn test_day03() {
-    let test_input = fs::read_to_string("input/day03_test.txt").unwrap();
-    let day03 = Day03::new(&*test_input);
-
-    assert_eq!(day03.part_1(), "357");
-    assert_eq!(day03.part_2(), "3121910778619");
-}
+test_solution!(Day03, "input/day03_test.txt", "357", "3121910778619");

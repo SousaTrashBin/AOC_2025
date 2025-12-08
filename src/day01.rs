@@ -1,5 +1,5 @@
 use crate::solution::Solution;
-use std::fs;
+use crate::test_solution;
 
 #[derive(Debug)]
 enum Direction {
@@ -90,11 +90,4 @@ impl Solution for Day01 {
     }
 }
 
-#[test]
-fn test_day01() {
-    let test_input = fs::read_to_string("input/day01_test.txt").unwrap();
-    let day01 = Day01::new(&*test_input);
-
-    assert_eq!(day01.part_1(), "3");
-    assert_eq!(day01.part_2(), "6");
-}
+test_solution!(Day01, "input/day01_test.txt", "3", "6");

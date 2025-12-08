@@ -1,6 +1,6 @@
 use crate::solution::Solution;
+use crate::test_solution;
 use std::fmt::{Debug, Formatter};
-use std::fs;
 
 struct Problem {
     numbers: Vec<i64>,
@@ -128,12 +128,4 @@ fn parse_part2(input: &str) -> Vec<Problem> {
         .collect()
 }
 
-#[test]
-fn test_day06() {
-    let test_input = fs::read_to_string("input/day06_test.txt").unwrap();
-    let day06 = Day06::new(&*test_input);
-    println!("{:?}", day06);
-
-    assert_eq!(day06.part_1(), "4277556");
-    assert_eq!(day06.part_2(), "3263827");
-}
+test_solution!(Day06, "input/day06_test.txt", "4277556", "3263827");

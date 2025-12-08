@@ -1,6 +1,6 @@
 use crate::solution::Solution;
+use crate::test_solution;
 use std::cmp::Ordering;
-use std::fs;
 
 type Ingredient = i64;
 
@@ -118,12 +118,4 @@ impl Range {
     }
 }
 
-#[test]
-fn test_day05() {
-    let test_input = fs::read_to_string("input/day05_test.txt").unwrap();
-    let day05 = Day05::new(&*test_input);
-    println!("{:?}", day05);
-
-    assert_eq!(day05.part_1(), "3");
-    assert_eq!(day05.part_2(), "14");
-}
+test_solution!(Day05, "input/day05_test.txt", "3", "14");

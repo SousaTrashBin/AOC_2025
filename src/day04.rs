@@ -1,6 +1,6 @@
 use crate::solution::Solution;
+use crate::test_solution;
 use std::collections::HashMap;
-use std::fs;
 
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub struct Position {
@@ -121,11 +121,4 @@ impl Day04 {
     }
 }
 
-#[test]
-fn test_day04() {
-    let test_input = fs::read_to_string("input/day04_test.txt").unwrap();
-    let day04 = Day04::new(&*test_input);
-
-    assert_eq!(day04.part_1(), "13");
-    assert_eq!(day04.part_2(), "43");
-}
+test_solution!(Day04, "input/day04_test.txt", "13", "43");

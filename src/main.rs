@@ -29,3 +29,21 @@ fn main() {
     let (p2, t2) = measure(&|| day.part_2());
     println!("part 2: {} ({} ms)", p2, t2);
 }
+
+#[macro_export]
+macro_rules! test_solution {
+    ($day:ty, $file:expr, $expected1:expr, $expected2:expr) => {
+        #[test]
+        fn test() {
+            use crate::solution::Solution;
+            use std::fs;
+
+            let input = fs::read_to_string($file).unwrap();
+            let solver = <$day>::new(&input);
+            print!("{:?}", solver);
+
+            assert_eq!(solver.part_1(), $expected1);
+            assert_eq!(solver.part_2(), $expected2);
+        }
+    };
+}

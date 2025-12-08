@@ -1,5 +1,5 @@
 use crate::solution::Solution;
-use std::fs;
+use crate::test_solution;
 
 #[derive(Debug)]
 struct ProductIdRange {
@@ -67,11 +67,4 @@ impl Solution for Day02 {
     }
 }
 
-#[test]
-fn test_day02() {
-    let test_input = fs::read_to_string("input/day02_test.txt").unwrap();
-    let day02 = Day02::new(&*test_input);
-
-    assert_eq!(day02.part_1(), "1227775554");
-    assert_eq!(day02.part_2(), "4174379265");
-}
+test_solution!(Day02, "input/day02_test.txt", "1227775554", "4174379265");

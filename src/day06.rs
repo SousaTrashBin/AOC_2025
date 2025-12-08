@@ -128,4 +128,4 @@ fn parse_part2(input: &str) -> Vec<Problem> {
         .collect()
 }
 
-test_solution!(Day06, "input/day06_test.txt", "4277556", "3263827");
+test_solution!(6, "4277556", "3263827");

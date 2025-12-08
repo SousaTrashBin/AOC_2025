@@ -90,4 +90,4 @@ impl Solution for Day01 {
     }
 }
 
-test_solution!(Day01, "input/day01_test.txt", "3", "6");
+test_solution!(1, "3", "6");

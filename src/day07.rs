@@ -96,4 +96,4 @@ impl Solution for Day07 {
     }
 }
 
-test_solution!(Day07, "input/day07_test.txt", "21", "40");
+test_solution!(7, "21", "40");

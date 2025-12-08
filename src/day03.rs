@@ -58,4 +58,4 @@ impl Bank {
     }
 }
 
-test_solution!(Day03, "input/day03_test.txt", "357", "3121910778619");
+test_solution!(3, "357", "3121910778619");

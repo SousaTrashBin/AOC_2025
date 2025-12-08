@@ -121,4 +121,4 @@ impl Day04 {
     }
 }
 
-test_solution!(Day04, "input/day04_test.txt", "13", "43");
+test_solution!(4, "13", "43");

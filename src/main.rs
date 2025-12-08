@@ -32,18 +32,20 @@ fn main() {
 
 #[macro_export]
 macro_rules! test_solution {
-    ($day:ty, $file:expr, $expected1:expr, $expected2:expr) => {
-        #[test]
-        fn test() {
-            use crate::solution::Solution;
-            use std::fs;
+    ($day:expr, $expected1:expr, $expected2:expr) => {
+        paste::paste! {
+            #[test]
+            fn [<test_day$day>]() {
+                use crate::solution::Solution;
+                use std::fs;
 
-            let input = fs::read_to_string($file).unwrap();
-            let solver = <$day>::new(&input);
-            print!("{:?}", solver);
+                let input = fs::read_to_string(concat!("input/day0", $day, "_test.txt")).unwrap();
+                let solver = [<Day0$day>]::new(&input);
+                println!("{:?}", solver);
 
-            assert_eq!(solver.part_1(), $expected1);
-            assert_eq!(solver.part_2(), $expected2);
+                assert_eq!(solver.part_1(), $expected1);
+                assert_eq!(solver.part_2(), $expected2);
+            }
         }
     };
 }

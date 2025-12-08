@@ -118,4 +118,4 @@ impl Range {
     }
 }
 
-test_solution!(Day05, "input/day05_test.txt", "3", "14");
+test_solution!(5, "3", "14");

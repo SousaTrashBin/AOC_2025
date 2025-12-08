@@ -67,4 +67,4 @@ impl Solution for Day02 {
     }
 }
 
-test_solution!(Day02, "input/day02_test.txt", "1227775554", "4174379265");
+test_solution!(2, "1227775554", "4174379265");

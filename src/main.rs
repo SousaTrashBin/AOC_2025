@@ -1,4 +1,4 @@
-use crate::day09::Day09;
+use crate::day10::Day10;
 use crate::solution::Solution;
 use std::fs;
 use std::time::Instant;
@@ -12,11 +12,12 @@ mod day06;
 mod day07;
 mod day08;
 mod day09;
+mod day10;
 mod solution;
 
 fn main() {
-    let input = fs::read_to_string("input/day09.txt").unwrap();
-    let day = Day09::new(&input);
+    let input = fs::read_to_string("input/day10.txt").unwrap();
+    let day = Day10::new(&input);
 
     let measure = |f: &dyn Fn() -> String| {
         let start = Instant::now();
@@ -34,15 +35,46 @@ fn main() {
 
 #[macro_export]
 macro_rules! test_solution {
-    ($day:expr, $expected1:expr, $expected2:expr) => {
+    (1, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(01, $e1, $e2);
+    };
+    (2, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(02, $e1, $e2);
+    };
+    (3, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(03, $e1, $e2);
+    };
+    (4, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(04, $e1, $e2);
+    };
+    (5, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(05, $e1, $e2);
+    };
+    (6, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(06, $e1, $e2);
+    };
+    (7, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(07, $e1, $e2);
+    };
+    (8, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(08, $e1, $e2);
+    };
+    (9, $e1:expr, $e2:expr) => {
+        $crate::test_solution!(09, $e1, $e2);
+    };
+
+    ($day:literal, $expected1:expr, $expected2:expr) => {
         paste::paste! {
             #[test]
             fn [<test_day$day>]() {
                 use crate::solution::Solution;
                 use std::fs;
 
-                let input = fs::read_to_string(concat!("input/day0", $day, "_test.txt")).unwrap();
-                let solver = [<Day0$day>]::new(&input);
+                let input = fs::read_to_string(
+                    concat!("input/day", stringify!($day), "_test.txt")
+                ).unwrap();
+
+                let solver = [<Day$day>]::new(&input);
                 println!("{:?}", solver);
 
                 assert_eq!(solver.part_1(), $expected1);

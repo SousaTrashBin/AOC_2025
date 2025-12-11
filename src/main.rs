@@ -1,4 +1,4 @@
-use crate::day10::Day10;
+use crate::day11::Day11;
 use crate::solution::Solution;
 use std::fs;
 use std::time::Instant;
@@ -13,11 +13,12 @@ mod day07;
 mod day08;
 mod day09;
 mod day10;
+mod day11;
 mod solution;
 
 fn main() {
-    let input = fs::read_to_string("input/day10.txt").unwrap();
-    let day = Day10::new(&input);
+    let input = fs::read_to_string("input/day11.txt").unwrap();
+    let day = Day11::new(&input);
 
     let measure = |f: &dyn Fn() -> String| {
         let start = Instant::now();
